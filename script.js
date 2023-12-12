@@ -4,7 +4,7 @@ let currentPlayer = 1;
 let dice1;
 
 document.addEventListener("DOMContentLoaded", function () {
-  iniciarBoard();
+  startGame();
 });
 
 function iniciarBoard() {
@@ -31,6 +31,8 @@ function startGame() {
   dice1 = document.getElementById("dice1");
   console.log(dice1);
   dice1.addEventListener("click", rollDice); //rolando o dado
+
+  iniciarBoard();
 }
 
 //validando o dado
