@@ -49,4 +49,10 @@ function rollDice() {
   }
 }
 
-function selectPlace() {}
+function selectPlace(e) {
+  const diceValue = dice1.textContent;
+
+  const element = e.target;
+  element.textContent = diceValue;
+  dice1.textContent = "";
+}
