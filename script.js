@@ -38,4 +38,13 @@ function getRandomDiceValue() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
+function rollDice() {
+  const diceValue = getRandomDiceValue();
+
+  /* verifica se o dado já foi jogado*/
+  if (dice1.textContent == "") {
+    dice1.textContent = diceValue;
+  }
+}
+
 function selectPlace() {}
