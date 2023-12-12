@@ -33,4 +33,9 @@ function startGame() {
   dice1.addEventListener("click", rollDice); //rolando o dado
 }
 
+//validando o dado
+function getRandomDiceValue() {
+  return Math.floor(Math.random() * 6) + 1;
+}
+
 function selectPlace() {}
