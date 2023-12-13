@@ -63,6 +63,8 @@ function selectPlace(e) {
   dice1.textContent = "";
 
   //alterna entre os jogadores
+  checkAndClearOpponentBoard();
+  switchPlayer();
 }
 
 //* função que faz a jogada do bot
@@ -82,6 +84,9 @@ function botPaly() {
   //* adiciona o valor do dado no elemento e a classe last-play
   element.innerHTML = getRandomDiceValue();
   element.classList.add("last-play");
+
+  checkAndClearOpponentBoard();
+  switchPlayer();
 }
 
 //* função que alterna entre os jogadores
@@ -89,5 +94,34 @@ function switchPlayer() {
   currentPlayer = currentPlayer === 1 ? 2 : 1;
   if (currentPlayer == 2) {
     botPaly();
+  }
+}
+
+
+function checkAndClearOpponentBoard() {
+  for (const child1 of board1.children) {
+    const index1 = child1.dataset.index;
+    const value1 = child1.textContent;
+    const board1I = index1 % 3;
+    const board1J = Math.floor(index1 / 3);
+
+    for (const child2 of board2.children) {
+      const index2 = child2.dataset.index;
+      const value2 = child2.textContent;
+      const board2I = index2 % 3;
+      const board2J = Math.floor(index2 / 3);
+
+      if (value1 === value2 && value1 !== null) {
+        if (board1I === board2I || board1J === board2J) {
+          const cell1 = board1.querySelector(`[data-index='${index1}']`);
+          const cell2 = board2.querySelector(`[data-index='${index2}']`);
+          if (currentPlayer == 1) {
+            cell2.innerHTML = "";
+          } else {
+            cell1.innerHTML = "";
+          }
+        }
+      }
+    }
   }
 }
