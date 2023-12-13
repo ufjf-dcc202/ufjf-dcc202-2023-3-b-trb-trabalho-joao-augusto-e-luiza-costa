@@ -64,7 +64,10 @@ function selectPlace(e) {
 
   //alterna entre os jogadores
   checkAndClearOpponentBoard();
-  switchPlayer();
+  if(!checkEndGame()){
+    switchPlayer();
+  }
+
 }
 
 //* função que faz a jogada do bot
@@ -86,7 +89,9 @@ function botPaly() {
   element.classList.add("last-play");
 
   checkAndClearOpponentBoard();
-  switchPlayer();
+  if(!checkEndGame()){
+    switchPlayer();
+  }
 }
 
 //* função que alterna entre os jogadores
@@ -124,4 +129,26 @@ function checkAndClearOpponentBoard() {
       }
     }
   }
+}
+
+function checkEndGame() {
+  let nullSpots1 = 0;
+  for (const child of board1.children) {
+    const value1 = child.textContent;
+    if (value1 == "") {
+      nullSpots1++;
+    }
+  }
+  let nullSpots2 = 0;
+  for (const child of board2.children) {
+    const value2 = child.textContent;
+    if (value2 == "") {
+      nullSpots2++;
+    }
+  }
+  if (nullSpots1 == 0 || nullSpots2 == 0) {
+    alert(`${currentPlayer == 1 ? "Você ganhou!" : "Você perdeu!"}`);
+    return true;
+  }
+  return false;
 }
