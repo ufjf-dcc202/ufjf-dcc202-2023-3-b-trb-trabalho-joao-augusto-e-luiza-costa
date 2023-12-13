@@ -52,7 +52,42 @@ function rollDice() {
 function selectPlace(e) {
   const diceValue = dice1.textContent;
 
+  //* verifica se o player é o 2 ou se o dado não foi jogado
+  if (currentPlayer == 2 || diceValue == "") {
+    return;
+  }
+
+  //passa o valor do dado para o elemento
   const element = e.target;
   element.textContent = diceValue;
   dice1.textContent = "";
+
+  //alterna entre os jogadores
+}
+
+//* função que faz a jogada do bot
+function botPaly() {
+  const blocks = board2.children;
+
+  //* remove a classe last-play de todos os elementos
+  for (const child of blocks) {
+    child.classList.remove("last-play");
+  }
+
+  //* seleciona um elemento aleatório e adiciona a classe last-play
+  const element = board2.querySelector(
+    `[data-index='${Math.floor(Math.random() * 9)}']`
+  );
+
+  //* adiciona o valor do dado no elemento e a classe last-play
+  element.innerHTML = getRandomDiceValue();
+  element.classList.add("last-play");
+}
+
+//* função que alterna entre os jogadores
+function switchPlayer() {
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+  if (currentPlayer == 2) {
+    botPaly();
+  }
 }
