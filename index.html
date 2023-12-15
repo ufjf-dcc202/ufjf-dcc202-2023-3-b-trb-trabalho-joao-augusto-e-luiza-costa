@@ -9,15 +9,17 @@
   <body>
     <div class="game-container">
       <div class="side" id="player">
-        <h1>Jogador 1</h1>
+        <h2>Jogador 1</h2>
+        <div class="points" id="board1-points">0</div>
         <div class="board" id="board1"></div>
         <div class="control">
-          <button onclick="rolldice()" class="dice" id="dice1"></button>
-          <label for="dice1">Jogar dado</label>
+          <button onclick="rollDice()" class="dice" id="dice1"></button>
+          <label for="dice1">Jogar Dado</label>
         </div>
       </div>
       <div class="side" id="bot">
         <h2>Bot</h2>
+        <div class="points" id="board2-points">0</div>
         <div class="board" id="board2"></div>
       </div>
     </div>
