@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   startGame();
 });
 
+//cria tabuleiro
 function iniciarBoard() {
   board1 = document.getElementById("board1");
   board2 = document.getElementById("board2");
@@ -64,10 +65,11 @@ function selectPlace(e) {
 
   //alterna entre os jogadores
   checkAndClearOpponentBoard();
-  if(!checkEndGame()){
+  if (!checkEndGame()) {
     switchPlayer();
+  } else {
+    endGame();
   }
-
 }
 
 //* função que faz a jogada do bot
@@ -89,8 +91,10 @@ function botPaly() {
   element.classList.add("last-play");
 
   checkAndClearOpponentBoard();
-  if(!checkEndGame()){
+  if (!checkEndGame()) {
     switchPlayer();
+  } else {
+    endGame();
   }
 }
 
@@ -101,7 +105,6 @@ function switchPlayer() {
     botPaly();
   }
 }
-
 
 function checkAndClearOpponentBoard() {
   for (const child1 of board1.children) {
@@ -151,4 +154,9 @@ function checkEndGame() {
     return true;
   }
   return false;
+}
+
+function endGame() {
+  currentPlayer = 1;
+  startGame();
 }
