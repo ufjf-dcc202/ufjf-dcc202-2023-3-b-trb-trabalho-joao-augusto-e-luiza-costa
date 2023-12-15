@@ -3,11 +3,12 @@ let board2;
 let currentPlayer = 1;
 let dice1;
 
+//quando o documento estiver pronto, inicia o jogo
 document.addEventListener("DOMContentLoaded", function () {
   startGame();
 });
 
-//cria tabuleiro
+//cria tabuleiro, adiciona os elementos e os eventos
 function iniciarBoard() {
   board1 = document.getElementById("board1");
   board2 = document.getElementById("board2");
