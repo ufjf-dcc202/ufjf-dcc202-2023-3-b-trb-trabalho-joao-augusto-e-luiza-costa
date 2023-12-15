@@ -3,7 +3,7 @@ let board2;
 let currentPlayer = 1;
 let dice1;
 
-//quando o html estiver pronto, inicia o jogo
+//fuuncao que é executada quando o documento é carregado
 document.addEventListener("DOMContentLoaded", function () {
   startGame();
 });
@@ -111,6 +111,21 @@ function switchPlayer() {
 
 //verifica tabuleiro do oponente e limpa os valores iguais
 function checkAndClearOpponentBoard() {
+  //* a lista de elementos do tabuleiro é uma lista de uma dimensão. Porem queremos interpretar como uma lista de duas dimensões
+  //* para isso, convertemos o index para um indexI e um idexJ
+  //* dessa forma, a matriz a seguir que representa a posição em relação ao index
+  /**
+   * 0 1 2
+   * 3 4 5
+   * 6 7 8
+   */
+  //* passa a ser interpretada da seguinte forma:
+  /**
+   * (0,0) (0,1) (0,2)
+   * (1,0) (1,1) (1,2)
+   * (2,0) (2,1) (2,2)
+   */
+  //* comparamos os valores do tabuleiro e se forem iguais, verificamos se estão na mesma linha ou coluna (mesmo indexI ou indexJ) e removemos o valor do tabuleiro do oponente
   for (const child1 of board1.children) {
     //percorre o tabuleiro do player
     const index1 = child1.dataset.index; //pega o index do elemento
@@ -142,7 +157,6 @@ function checkAndClearOpponentBoard() {
   }
 }
 
-//checar a quantidade de espaços vazios no tabuleiro e atribuir se ganhou ou perdeu
 function checkEndGame() {
   let nullSpots1 = 0;
   for (const child of board1.children) {
@@ -167,6 +181,7 @@ function checkEndGame() {
   return false;
 }
 
+//* função que reinicia o jogo
 function endGame() {
   currentPlayer = 1;
   startGame();
