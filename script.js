@@ -75,18 +75,18 @@ function selectPlace(e) {
   }
 }
 
-//* função que faz a jogada do bot
+//* função que faz a jogada do bot, pega um lugar aleatório e adiciona o valor do dado
 function botPaly() {
-  const blocks = board2.children;
+  const blocks = board2.children; //pega todos os elementos do tabuleiro do bot
 
   //* remove a classe last-play de todos os elementos
   for (const child of blocks) {
-    child.classList.remove("last-play");
+    child.classList.remove("last-play"); //tirar a marcação do ultimo elemento jogado
   }
 
   //* seleciona um elemento aleatório e adiciona a classe last-play
   const element = board2.querySelector(
-    `[data-index='${Math.floor(Math.random() * 9)}']`
+    `[data-index='${Math.floor(Math.random() * 9)}']` //pegar o lugar que vai adicionar a jogada do bot
   );
 
   //* adiciona o valor do dado no elemento e a classe last-play

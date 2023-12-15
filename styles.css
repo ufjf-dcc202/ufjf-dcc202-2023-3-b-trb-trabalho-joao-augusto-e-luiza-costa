@@ -13,6 +13,7 @@
   padding: 20px;
 }
 
+/*cria o tabuleiro como todo */
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -20,6 +21,7 @@
   margin-bottom: 10px;
 }
 
+/*modifica os fihos do tabuleiro*/
 .board * {
   width: 50px;
   height: 50px;
@@ -32,6 +34,7 @@
   transition: all 0.3s ease-in-out;
 }
 
+/*modifica parte que joga o dado*/
 .control {
   display: flex;
   flex-direction: column;
@@ -39,6 +42,7 @@
   margin-bottom: 10px;
 }
 
+/*modifica o botão de jogar o dado*/
 #board1 *:hover {
   cursor: pointer;
 }
