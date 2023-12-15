@@ -3,7 +3,7 @@ let board2;
 let currentPlayer = 1;
 let dice1;
 
-//quando o documento estiver pronto, inicia o jogo
+//quando o html estiver pronto, inicia o jogo
 document.addEventListener("DOMContentLoaded", function () {
   startGame();
 });
@@ -17,6 +17,7 @@ function iniciarBoard() {
   board2.innerHTML = null;
 
   for (let i = 0; i < 9; i++) {
+    //criar uma grade 3x3 e cria botões nessa grade ao clicar
     const cell1 = document.createElement("button");
     cell1.addEventListener("click", selectPlace);
     const cell2 = document.createElement("div");
@@ -51,6 +52,7 @@ function rollDice() {
   }
 }
 
+//seleciona um lugar do tabuleiro para atribuir o valor do dado
 function selectPlace(e) {
   const diceValue = dice1.textContent;
 
@@ -60,9 +62,9 @@ function selectPlace(e) {
   }
 
   //passa o valor do dado para o elemento
-  const element = e.target;
-  element.textContent = diceValue;
-  dice1.textContent = "";
+  const element = e.target; //pega o elemento clicado
+  element.textContent = diceValue; //adiciona o valor do dado no elemento
+  dice1.textContent = ""; //limpa o dado
 
   //alterna entre os jogadores
   checkAndClearOpponentBoard();
@@ -107,24 +109,29 @@ function switchPlayer() {
   }
 }
 
+//verifica tabuleiro do oponente e limpa os valores iguais
 function checkAndClearOpponentBoard() {
   for (const child1 of board1.children) {
-    const index1 = child1.dataset.index;
-    const value1 = child1.textContent;
-    const board1I = index1 % 3;
+    //percorre o tabuleiro do player
+    const index1 = child1.dataset.index; //pega o index do elemento
+    const value1 = child1.textContent; //pega o valor do elemento
+    const board1I = index1 % 3; //pega a posição do elemento na grade
     const board1J = Math.floor(index1 / 3);
 
     for (const child2 of board2.children) {
+      //faz a mesma coisa para o tabuleiro do oponente
       const index2 = child2.dataset.index;
       const value2 = child2.textContent;
       const board2I = index2 % 3;
       const board2J = Math.floor(index2 / 3);
 
       if (value1 === value2 && value1 !== null) {
+        //se o valor do dois forem iguais, limpa o tabuleiro do oponente
         if (board1I === board2I || board1J === board2J) {
-          const cell1 = board1.querySelector(`[data-index='${index1}']`);
+          const cell1 = board1.querySelector(`[data-index='${index1}']`); //pega os elementos do board com index igual
           const cell2 = board2.querySelector(`[data-index='${index2}']`);
           if (currentPlayer == 1) {
+            //verifica onde vai limpar
             cell2.innerHTML = "";
           } else {
             cell1.innerHTML = "";
@@ -135,9 +142,11 @@ function checkAndClearOpponentBoard() {
   }
 }
 
+//checar a quantidade de espaços vazios no tabuleiro e atribuir se ganhou ou perdeu
 function checkEndGame() {
   let nullSpots1 = 0;
   for (const child of board1.children) {
+    //percorre todo o tabuleiro do player
     const value1 = child.textContent;
     if (value1 == "") {
       nullSpots1++;
@@ -145,6 +154,7 @@ function checkEndGame() {
   }
   let nullSpots2 = 0;
   for (const child of board2.children) {
+    //percorre o tabuleiro do bot
     const value2 = child.textContent;
     if (value2 == "") {
       nullSpots2++;
