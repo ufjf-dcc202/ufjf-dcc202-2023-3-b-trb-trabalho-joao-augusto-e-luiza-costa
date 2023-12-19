@@ -41,7 +41,7 @@ function iniciarBoard() {
   }
 }
 
-//para escrever o valor do dado
+//para escrever o valor do tabuleiro da lógica do jogo, atualizada, na tela do usuário
 function fillBoard(board) {
   let boardValues = getBoard(board);
   let boardElement = board == 1 ? board1Element : board2Element;
