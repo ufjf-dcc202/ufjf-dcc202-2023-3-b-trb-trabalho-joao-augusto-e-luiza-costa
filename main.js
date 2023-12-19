@@ -16,6 +16,7 @@ let board2PointsElement;
 let dice1Element;
 let diceValue;
 let restartButton;
+let finishGame;
 
 function iniciarBoard() {
   board1Element = document.querySelector("#board1");
@@ -143,6 +144,7 @@ function main() {
   iniciarBoard();
   startGame();
   updateBoards();
+  finishButton();
 }
 
 //quando carregar o arquivo html, vai executar a função main
@@ -158,3 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   main();
 });
+
+function finishButton() {
+  finishGame = document.querySelector("#finish-btt");
+  finishGame.addEventListener("click", resetGame);
+}

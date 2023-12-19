@@ -81,3 +81,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+#finish-btt {
+  background-color: #ff9f9f;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
