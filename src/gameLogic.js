@@ -136,14 +136,15 @@ export function selectPlace(index) {
 function checkAndClearOpponentBoard() {
   for (let index1 = 0; index1 < player.board.length; index1++) {
     const value1 = player.board[index1];
-    const board1I = index1 % 3;
+    const board1I = index1 % 3; //0,1,2
 
     for (let index2 = 0; index2 < bot.board.length; index2++) {
       const value2 = bot.board[index2];
-      const board2I = index2 % 3;
+      const board2I = index2 % 3; //0,1,2
 
       if (value1 === value2 && value1 !== null) {
         if (board1I === board2I) {
+          //se for o mesmo resto, indica que está na mesma coluna
           if (currentPlayer == 1) {
             bot.board[index2] = null;
           } else {
