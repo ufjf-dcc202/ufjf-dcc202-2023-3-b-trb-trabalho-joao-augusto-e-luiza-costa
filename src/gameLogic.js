@@ -1,10 +1,12 @@
 let currentPlayer = 1;
+let continueGame = true;
 
 let player = {
   board: [],
   points: 0,
   diceValue: null,
 };
+
 let bot = {
   board: [],
   points: 0,
@@ -17,10 +19,13 @@ export function startGame() {
   player.diceValue = null;
   player.board = [];
   bot.board = [];
+
+  //criando o board em forma de array
   for (let i = 0; i < 9; i++) {
     player.board.push(null);
     bot.board.push(null);
   }
+  continueGame = true;
 }
 
 export function getBoard(boardId) {
@@ -31,14 +36,27 @@ export function getBoard(boardId) {
 }
 
 export function rollDice() {
+  if (!continueGame) {
+    console.log("jogo acabou");
+    return;
+  }
+
   if (player.diceValue == null) {
     player.diceValue = getRandomDiceValue();
     return player.diceValue;
   }
 }
 
+//jogado do bot
 export function botPaly() {
+  if (!continueGame) {
+    console.log("jogo acabou");
+    return;
+  }
+
+  //decidir onde jogar
   const index = Math.floor(Math.random() * 9);
+
   // se o lugar já estiver ocupado, joga de novo
   if (bot.board[index] != null) {
     return botPaly();
@@ -84,6 +102,7 @@ export function checkEndGame() {
   }
 
   if (nullSpots1 == 0 || nullSpots2 == 0) {
+    continueGame = false;
     return checkGanhador();
   }
   return 0;
@@ -93,7 +112,13 @@ function getRandomDiceValue() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
+//jogada do player
 export function selectPlace(index) {
+  if (!continueGame) {
+    console.log("jogo acabou");
+    return;
+  }
+
   if (currentPlayer == 2 || player.diceValue == null) {
     return false;
   }
@@ -132,6 +157,7 @@ function checkAndClearOpponentBoard() {
   bot.points = getBoardPoints(2);
 }
 
+//esta reescrevendo o valor dos pontos
 export function getBoardPoints(boardId) {
   let board = boardId == 1 ? player.board : bot.board;
   let totalPoints = 0;

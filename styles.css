@@ -58,3 +58,26 @@
 .last-play {
   background-color: rgba(43, 226, 76, 0.333);
 }
+
+.fim-de-jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: auto; /* Adicionado para centralizar o elemento na página */
+  width: 30%; /* Diminui a largura do elemento */
+  margin-top: 50px;
+}
+
+.restart {
+  background-color: #ff9f9f;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
