@@ -19,8 +19,8 @@ let restartButton;
 let finishGame;
 
 function iniciarBoard() {
-  board1Element = document.querySelector("#board1");
-  board2Element = document.querySelector("#board2");
+  //board1Element = document.querySelector("#board1");
+  //board2Element = document.querySelector("#board2");
 
   //inicializando o botão para mostrar somente quando termina o jogo
   restartButton = document.querySelector("#restart-button");
@@ -114,7 +114,7 @@ function testEndGame() {
     return false;
   }
 
-  const message = document.getElementById("message");
+  const message = document.querySelector("#message");
 
   if (endGameResult == 1) {
     message.innerHTML = "Você ganhou!";
