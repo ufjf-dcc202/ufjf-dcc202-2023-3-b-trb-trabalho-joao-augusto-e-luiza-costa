@@ -72,9 +72,12 @@ function updateCounters() {
 }
 
 function selectPlaceButton() {
+  //depois de selecionar o lugar e ser válido, já passa a jogada para o bot
+  //é na função do gameLogic que vai colocar o valor do dado no tabuleiro
   const index = this.dataset.index; //data-set so é usado para pegar onde colocou o dado
 
   if (selectPlace(index)) {
+    //manda o index para ver se é possível colocar o valor do dado
     dice1Element.innerHTML = "";
 
     updateCounters();
@@ -92,7 +95,7 @@ function selectPlaceButton() {
 
     let position = botPaly();
 
-    const element = board2.querySelector(`[data-index='${position}']`);
+    const element = board2.querySelector(`[data-index='${position}']`); //data index só para pegar o index do bot
     element.classList.add("last-play");
 
     updateCounters();
